@@ -2,12 +2,13 @@
 
 public static partial class CachingCommonDefaults
 {
-    public static int CacheTime => 60;
+    public static int CacheTime => 60; //by min 
 
     /// <summary>
     /// Gets a key for caching of products
     /// </summary>
     public static string AllCacheKey => "solid.ecommerce.{0}.all";
+    //solid.ecommerce.product.all
 
     /// <summary>
     /// Gets a key for caching

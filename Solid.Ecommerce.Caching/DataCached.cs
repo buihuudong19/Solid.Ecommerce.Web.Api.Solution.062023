@@ -75,6 +75,7 @@ public class DataCached : IDataCached
     }
 
     public IList<string> GetKeys() => _allKeys.Keys.ToList();
+    //solid.ecommerce.product.id
     public IList<T> GetValues<T>(string pattern)
     {
         IList<T> values = new List<T>();
@@ -86,6 +87,8 @@ public class DataCached : IDataCached
                 .Where(p => p.Value)
                 .Select(p => p.Key)
                 .Where(key => regex.IsMatch(key)).ToList();
+
+        //solid.ecommerce.product.id.1 -> solid.ecommerce.product.id.1078
 
         //remove matching values
         foreach (var key in matchesKeys)

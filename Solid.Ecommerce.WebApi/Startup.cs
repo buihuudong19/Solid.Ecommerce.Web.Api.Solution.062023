@@ -1,4 +1,5 @@
-﻿using Solid.Ecommerce.Services.ExtensionsServices;
+﻿using Solid.Ecommerce.Caching.Extensions;
+using Solid.Ecommerce.Services.ExtensionsServices;
 
 namespace Solid.Ecommerce.WebApi;
 
@@ -27,6 +28,11 @@ public class Startup
         /*Call services*/
         services.EcommerceInfrastructureDatabase(Configuration);
         services.AddDataServices();
+
+        /*call manual cached*/
+        services.AddCacheServices();
+
+
 
 
     }

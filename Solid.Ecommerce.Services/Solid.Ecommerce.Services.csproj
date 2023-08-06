@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Solid.Ecommerce.Application\Solid.Ecommerce.Application.csproj" />
+    <ProjectReference Include="..\Solid.Ecommerce.Caching\Solid.Ecommerce.Caching.csproj" />
     <ProjectReference Include="..\Solid.Ecommerce.Infrastructure\Solid.Ecommerce.Infrastructure.csproj" />
     <ProjectReference Include="..\Solid.Ecommerce.Shared.EntityModels.SqlServer\Solid.Ecommerce.Shared.EntityModels.SqlServer.csproj" />
   </ItemGroup>

@@ -1,12 +1,18 @@
-﻿namespace Solid.Ecommerce.WebApi.Controllers;
+﻿using Solid.Ecommerce.Caching;
+
+namespace Solid.Ecommerce.WebApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public class ProductsController:ControllerBase
 {
     private readonly IProductService _productService;
+   
+
+
     public ProductsController(IProductService productService)
     {
         _productService = productService;
+      
     }
     /*Return all products*/
     //GET: api/products
