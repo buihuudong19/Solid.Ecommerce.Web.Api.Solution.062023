@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Solid.Ecommerce.Application\Solid.Ecommerce.Application.csproj" />
+    <ProjectReference Include="..\Solid.Ecommerce.Infrastructure\Solid.Ecommerce.Infrastructure.csproj" />
+    <ProjectReference Include="..\Solid.Ecommerce.Services\Solid.Ecommerce.Services.csproj" />
+    <ProjectReference Include="..\Solid.Ecommerce.Shared.EntityModels.SqlServer\Solid.Ecommerce.Shared.EntityModels.SqlServer.csproj" />
+  </ItemGroup>
+
+</Project>
