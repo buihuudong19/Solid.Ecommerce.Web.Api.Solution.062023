@@ -53,13 +53,14 @@ public class Repository<T> : IRepository<T> where T : class
     public async Task<IList<T>> GetAllAsync()
         => await Entities.ToListAsync();
 
-    public async Task InsertAsync(T entity, bool saveChanges = true)
+    public async Task<T> InsertAsync(T entity, bool saveChanges = true)
     {
-        await Entities.AddAsync(entity); //van nam tren cached cua EFC
+       var p = await Entities.AddAsync(entity); //van nam tren cached cua EFC
         if (saveChanges)
         {
             await ApplicationDbContext.DbContext.SaveChangesAsync(); //apply giao dich dang tren cached cua EFC => DB
         }
+        return entity;
     }
 
     public async Task InsertRangeAsync(IEnumerable<T> entities, bool saveChanges = true)

@@ -1,13 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Solid.Ecommerce.Application.Interfaces.Repositories;
-using Solid.Ecommerce.Application.Interfaces.Services;
-using Solid.Ecommerce.Services.BaseServices;
-using Solid.Ecommerce.WebApi.Shared;
-using Solid.Ecommerce.Caching.Common;
-using System.Linq.Expressions;
-using Solid.Ecommerce.Caching;
-using Solid.Ecommerce.Caching.Extensions;
-
+﻿
 
 namespace Solid.Ecommerce.Services.Serivces;
 public class ProductService : DataServiceBase<Product>, IProductService
@@ -20,7 +11,7 @@ public class ProductService : DataServiceBase<Product>, IProductService
 
     }
 
-    public override async Task AddAsync(Product entity)
+    public override async Task<Product> AddAsync(Product entity)
     {
         try
         {
@@ -38,6 +29,7 @@ public class ProductService : DataServiceBase<Product>, IProductService
                 dataCached.Set(key, entity, CachingCommonDefaults.CacheTime);
 
             await UnitOfWork.CommitTransactionAsync();
+            return entity;
 
         }catch (Exception ex)
         {
@@ -139,7 +131,7 @@ public class ProductService : DataServiceBase<Product>, IProductService
             if (dataCached.IsSet(key))
                 return await Task.FromResult(dataCached.Get<Product>(key));
 
-
+            //Neu nhu id chua cached thi goi vao DB via UnitOfWork
             Product?  product = await UnitOfWork.Repository<Product>()
                 .FindAsync(id);
 

@@ -28,7 +28,7 @@ public abstract class DataServiceBase<TEntity>:IDataService<TEntity> where TEnti
     public abstract Task UpdateAsync(TEntity entity);
     public abstract Task DeleteAsync(int? id);
     public abstract Task DeleteAsync(TEntity entity);
-    public abstract Task AddAsync(TEntity entity);
+    public abstract Task<TEntity> AddAsync(TEntity entity);
 
     //manual methods cua abstract class
 }
