@@ -1,5 +1,6 @@
 ﻿using Solid.Ecommerce.Caching.Extensions;
 using Solid.Ecommerce.Services.ExtensionsServices;
+using Solid.Ecommerce.WebApi.Security;
 
 namespace Solid.Ecommerce.WebApi;
 
@@ -33,7 +34,8 @@ public class Startup
         services.AddCacheServices();
 
 
-
+        /*For security*/
+        services.AddCors();
 
     }
     //Chua all nhung cau hinh (chi lam 1 lan)
@@ -49,6 +51,8 @@ public class Startup
             app.UseHsts();
         }
 
+        app.UseMiddleware<SecurityHeaders>();
+
         app.UseHttpsRedirection();
         app.UseRouting();
 
@@ -60,8 +64,14 @@ public class Startup
             endpoints.MapControllers(); 
         }
         );
-
-
+        /*For security*/
+        app.UseCors(configurePolicy: options =>
+        {
+            options.WithMethods("GET", "POST", "PUT", "DELETE");
+            options.WithOrigins(
+            "https://localhost:7282" // allow requests from the client (diff domain)
+            );
+        });
     }
 
 }

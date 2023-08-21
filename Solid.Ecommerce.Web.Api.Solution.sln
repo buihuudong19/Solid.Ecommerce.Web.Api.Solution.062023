@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Ecommerce.WebApi", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Ecommerce.Caching", "Solid.Ecommerce.Caching\Solid.Ecommerce.Caching.csproj", "{AD7FF012-6C13-4957-B6DC-E4498DBDD9E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Ecommerce.IdentityJWT", "Solid.Ecommerce.IdentityJWT\Solid.Ecommerce.IdentityJWT.csproj", "{9E1BB471-19FA-4929-A284-208D43903259}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{AD7FF012-6C13-4957-B6DC-E4498DBDD9E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD7FF012-6C13-4957-B6DC-E4498DBDD9E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD7FF012-6C13-4957-B6DC-E4498DBDD9E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E1BB471-19FA-4929-A284-208D43903259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1BB471-19FA-4929-A284-208D43903259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1BB471-19FA-4929-A284-208D43903259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1BB471-19FA-4929-A284-208D43903259}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
