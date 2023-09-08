@@ -1,6 +1,13 @@
-﻿using Solid.Ecommerce.Caching.Extensions;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Solid.Ecommerce.Caching.Extensions;
+using Solid.Ecommerce.IdentityJWT.Authentication;
 using Solid.Ecommerce.Services.ExtensionsServices;
 using Solid.Ecommerce.WebApi.Security;
+using System.Text;
 
 namespace Solid.Ecommerce.WebApi;
 
@@ -34,8 +41,40 @@ public class Startup
         services.AddCacheServices();
 
 
+       
+        /*<Integerated authentiacate by Dongbh*/
+        /*Init conn*/
+        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStrSQLServerDB")));
+        /*For Identity*/
+        services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+        /*Add authentication*/
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
+        })
+        .AddJwtBearer(options =>
+        {
+            options.SaveToken = true;
+            options.RequireHttpsMetadata = false;
+            options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidAudience = Configuration["JWT:ValidAudience"],
+                ValidIssuer = Configuration["JWT:ValidIssuer"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
+            };
+        });
+        /*</Integerated authentiacate by Dongbh*/
         /*For security*/
         services.AddCors();
+
 
     }
     //Chua all nhung cau hinh (chi lam 1 lan)
@@ -55,10 +94,10 @@ public class Startup
 
         app.UseHttpsRedirection();
         app.UseRouting();
-
+        //<Authenticate by Dongbh
         app.UseAuthentication();
         app.UseAuthorization();
-
+        //</Authenticate by Dongbh
         app.UseEndpoints(endpoints => 
         { 
             endpoints.MapControllers(); 
